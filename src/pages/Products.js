@@ -3,6 +3,7 @@ import search from '../search.svg';
 import {useState, useEffect} from 'react';
 import Cards from "../components/Cards.js";
 import Sidebar from "../components/Sidebar.js";
+import CartDisplay from "../components/CartDisplay.js";
 
 
 const Products = (props) => {
@@ -34,6 +35,7 @@ const Products = (props) => {
                 </div>
             </div>
         </div>
+        
         )
 }
 
