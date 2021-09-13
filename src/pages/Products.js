@@ -13,10 +13,15 @@ const Products = (props) => {
 
     let searchVar;
     if(props.searchActive){
-        searchVar = <input className="search-input" type="search" placeholder="Search Category"/>
+        searchVar = <form onSubmit={(e)=>props.onSearchSubmit(e) }>
+                        <input className="search-input" type="search" placeholder="Search Category" value={props.searchState || ''}
+                            onChange={(e) => props.onSearchChange(e)}/>
+                        <button className="search-sbmit" type="submit"/>
+                    </form>
+
     }
     else if(!props.searchActive){
-        searchVar=<input type="image" src={search} alt="Search Categories" onClick={() => props.onSearchClick()}/>
+        searchVar=<input className="search-icon" type="image" src={search} alt="Search Categories" onClick={() => props.onSearchClick()}/>
     }
 
 
@@ -24,10 +29,11 @@ const Products = (props) => {
 
         <div className="products">
             <div className="side-bar">
-                <Sidebar categories={props.categories} />
+                <Sidebar categories={props.categories} categoryClick={(e) => props.categoryClick(e)}/>
             </div>
             <div className="main-items">
                 <div className="search-bar">
+                    <h3>{props.categoryHeader}</h3>
                     {searchVar}
                 </div>
                 <div className="item-cards1">

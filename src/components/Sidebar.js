@@ -12,11 +12,12 @@ const Sidebar = (props) => {
                     props.categories.map( (item) => {
                         return(
                             <div className="lst-div" key={item.id}>
-                                <li> <input className="input-cat" type="button" value={item.category}/> </li>
+                                <li> <input className="input-cat" type="button" value={item.category} onClick={(e) => props.categoryClick(e) } /> </li>
                             </div>
                            )
                     }
                 )}
+                <li> <input className="input-cat-clear" type="button" value="Clear Filters" onClick={(e) => props.categoryClick(e) } /> </li>
             </ul>
         </div>
 

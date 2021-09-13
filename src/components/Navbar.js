@@ -7,7 +7,7 @@ const Navbar = (props) => {
     return (
         <div className={"header"}>
             <div className="shop-name">
-                <h1>Re-Psych-a-d-Ellie</h1>
+                <h1>Salvidged Apparel</h1>
             </div>
             <div className="navbar"> 
                 <ul>
