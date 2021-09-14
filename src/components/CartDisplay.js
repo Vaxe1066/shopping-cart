@@ -20,7 +20,7 @@ const CartDisplay = (props) =>{
                                     £{item.price} <br/>
                                     <span id={item.id} className="minus" onClick={(e) => props.remove(e)}> - 
                                     </span> {item.count} 
-                                    <span id={item.id} className="minus" onClick={(e) => props.add(e)}> + </span>
+                                    <span id={item.id} className="plus" onClick={(e) => props.add(e)}> + </span>
                                 </p>
                                 {/*<input id={item.id} className="add-cart-btn" type="button" value="Add to cart" onClick={(e) => props.addToCart(e)}/>*/}
                             </div>

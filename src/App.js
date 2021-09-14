@@ -7,6 +7,7 @@ import CartDisplay from './components/CartDisplay';
 import {BrowserRouter, Switch, Route } from "react-router-dom";
 import React, {useState, useEffect} from 'react';
 import uniqid from "uniqid";
+import { useHistory } from "react-router-dom";
 
 /*import images for products */
 import buckethat1 from './buckethat1.jpg';
@@ -23,7 +24,7 @@ const App = () =>{
   const [total, setTotal] = useState(0);
   const [itemsCount, setItemsCount] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState("All Products");
-  const [searchState, setSearchState] = useState('');
+  const [searchState, setSearchState] = useState("");
   const [cardArray, setCardArray] = useState(
         [
           {
@@ -104,11 +105,14 @@ const App = () =>{
   const escDown = (event) =>{
     if(event.keyCode===27){
       setSearchActive(false);
-    }
+      setSelectedFilter("All Products");
+      setSearchState("");
+;    }
   }
 
+
+
   useEffect(() => {
-    //document.addEventListener("keydown", escDown, false);
     totalPrice();
     countItems();
     let addCartInput = document.querySelectorAll(".add-cart-btn");
@@ -123,8 +127,25 @@ const App = () =>{
     filterCategory(selectedFilter)
   }, [selectedFilter])
 
+  useEffect(() => {
+    filterSearch();
+  }, [searchState])
+
+
+
+  useEffect(() => {
+
+      document.addEventListener("keydown", escDown, false);
+      return () => {
+        setSearchState('');
+        document.addEventListener("keydown", escDown, false);
+      }
+    
+  }, [searchActive]);
+
   const searchClick = () => { 
     setSearchActive(true);
+  
   }
 
   const addToCart = (event) => {
@@ -217,8 +238,29 @@ const countItems = () => {
     
 }
 
+const filterSearch = () => {
+  let allStr = "All Products"
+  let value = searchState;
+  if(value!==allStr){
+    let copycardArray = [...cardArray];
+    let newLst = [];
+    for(let i=0; i<copycardArray.length; ++i){
+      //if(copycardArray[i].category===value){
+        if(copycardArray[i].category.toUpperCase().startsWith(value.toUpperCase())){
+        newLst.push(copycardArray[i]);
+      }
+    }
+    setFilterCardArray([...newLst]);
+  }
+  else if(allStr.startsWith(value)){
+    setFilterCardArray([...cardArray]);
+  }
+
+}
+
 
 const filterCategory = (value) => {
+  
   if(value!=="All Products"){
     let copycardArray = [...cardArray];
     let newLst = [];
@@ -235,16 +277,21 @@ const filterCategory = (value) => {
 
 }
 
-
 const filteredHeading = (event) => {
   let value = event.target.value;
   if(value!=="Clear Filters"){
     setSelectedFilter(value);
+    setSearchState(value);
   }
   else if(value==="Clear Filters"){
+    console.log("clear filter")
     setSelectedFilter("All Products");
-  }
+    setSearchState("");
+;  }
 }
+
+
+
 
   return (
     <BrowserRouter>
@@ -255,12 +302,12 @@ const filteredHeading = (event) => {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/products">
+            <Route exact path="/products">
               <Products searchActive={searchActive} onSearchClick = {searchClick} items={filterCardArray} categories={categories} addToCart={addToCart} 
                         categoryClick={filteredHeading} categoryHeader={selectedFilter} searchState={searchState}
                         onSearchChange={changeSearchState} onSearchSubmit={onSearchSubmit}/>
             </Route>
-            <Route path="/contact">
+            <Route exact path="/contact">
               <Contact />
             </Route>
           </Switch>

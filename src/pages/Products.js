@@ -33,7 +33,7 @@ const Products = (props) => {
             </div>
             <div className="main-items">
                 <div className="search-bar">
-                    <h3>{props.categoryHeader}</h3>
+                    <h3>Products</h3>
                     {searchVar}
                 </div>
                 <div className="item-cards1">

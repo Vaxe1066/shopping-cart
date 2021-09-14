@@ -1,13 +1,20 @@
 import React from "react";
+import clothes from '../clothes.jpg'
+import recycle from '../recycle.jpg'
+import {NavLink} from 'react-router-dom';
 
 const Home = () => (
   <div className="home" >
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras gravida,
-      risus at dapibus aliquet, elit quam scelerisque tortor, nec accumsan eros
-      nulla interdum justo. Pellentesque dignissim, sapien et congue rutrum,
-      lorem tortor dapibus turpis, sit amet vestibulum eros mi et odio.
-    </p>
+
+      <div className="home-desc">
+        <h3>
+          "Reducing Waste -
+              By Bringing Life Back To Disused Fabric"
+        </h3>
+        <NavLink className="shop-now" to="/products" exact>Shop Now</NavLink>
+        <img src={recycle} alt="recycle"></img>
+      </div>
+  
   </div>
 );
 
