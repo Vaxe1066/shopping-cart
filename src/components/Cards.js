@@ -14,7 +14,7 @@ const Cards = (props) => {
                             <p>{item.desc} <br/>
                                 £{item.price}
                             </p>
-                            <input id={item.id} className="add-cart-btn" type="button" value="Add to cart" onClick={(e) => props.addToCart(e)}/>
+                            <input id={item.id} disabled={false} className="add-cart-btn" type="button" value="Add to cart" onClick={(e) => props.addToCart(e)}/>
                         </div>
                     </div>
                 )

@@ -18,8 +18,8 @@ import facemask1 from './facemask1.jpg';
 const App = () =>{
   const [searchActive, setSearchActive] = useState(false);
   const [cartActive, setCartActive] = useState(false);
-  const [cart, settCart] = useState([]);
-  const [currentSelCart, setCurrentSelCart] = useState({});
+  const [cart, setCart] = useState([]);
+  const [uniqueCart, setUniqueCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [itemsCount, setItemsCount] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState("All Products");
@@ -108,9 +108,15 @@ const App = () =>{
   }
 
   useEffect(() => {
-    document.addEventListener("keydown", escDown, false);
+    //document.addEventListener("keydown", escDown, false);
     totalPrice();
     countItems();
+    let addCartInput = document.querySelectorAll(".add-cart-btn");
+    addCartInput.forEach((input) =>{
+      input.disabled = false;
+    })
+   
+
   }, [cart])
 
   useEffect(() =>{
@@ -121,51 +127,29 @@ const App = () =>{
     setSearchActive(true);
   }
 
-  const containsObject = (obj, list) =>{
-    for(let i=0; i<list.length; ++i){
-      if(list[i] === obj){
-        return true;
-      }
-    }
-    return false;
-  }
   const addToCart = (event) => {
-  
+    //event.target.disabled = true;
+    let addCartInput = document.querySelectorAll(".add-cart-btn");
+    addCartInput.forEach((input) =>{
+      input.disabled = false;
+    })
     let id = event.target.id;
-    for(let i=0; i<cardArray.length; ++i){
-      if((cardArray[i].id===id) ){
-        if(!containsObject(cardArray[i], cart)){
-          let obj = cardArray[i];
-          obj.count = obj.count + 1;
-          let copyCardArray = [...cardArray];
-          copyCardArray[i] = obj
-          settCart([...cart, cardArray[i]]);
-          break;
-        }
-        else if( containsObject(cardArray[i], cart) ){
-          let obj = cardArray[i];
-          obj.count = obj.count + 1;
-          let copyCardArray = [...cart];
-          copyCardArray[i] = obj
-          settCart([...copyCardArray]);
-        }
-      }
-      else{
-        continue;
-      }
+    let targetedObject = cardArray.filter((item) => item.id===id)[0];
+    let cartCopy = [...cart];
+    let cartCheck = cartCopy.map((e) => e.id ).indexOf(targetedObject.id);
+    if(cartCheck===-1){
+      targetedObject.count = targetedObject.count + 1;
+      setCart([...cartCopy, targetedObject]);
+    }
+    else if(cartCheck!==-1){
+      targetedObject.count = targetedObject.count + 1;
+      cartCopy[cartCheck] = targetedObject;
+      setCart([...cartCopy]);
     }
   }
 
 
-  const checkCartDupes = () => {
-    let lstId = [];
-    for(let i=0; i<=cart.length; ++i){
-      if (!lstId.includes(cart[i].id) ){
-        lstId.push(cart[i].id)
-      }
-    }
-    return lstId;
-  }
+
 
   const displayCart = () => {
     setCartActive(true);
@@ -185,7 +169,7 @@ const App = () =>{
           obj.count = obj.count -1;
           let copyCartrray = [...cart];
           copyCartrray[i] = obj
-          settCart([...copyCartrray]);
+          setCart([...copyCartrray]);
           break;
         }
         else{
@@ -205,7 +189,7 @@ const addItem = (e) => {
       obj.count = obj.count + 1;
       let copyCartrray = [...cart];
       copyCartrray[i] = obj
-      settCart([...copyCartrray]);
+      setCart([...copyCartrray]);
       break;
     }
   }
