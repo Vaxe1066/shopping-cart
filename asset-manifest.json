@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/shopping-cart/static/css/main.f5cd7c9d.chunk.css",
+    "main.js": "/shopping-cart/static/js/main.ea904717.chunk.js",
+    "main.js.map": "/shopping-cart/static/js/main.ea904717.chunk.js.map",
+    "runtime-main.js": "/shopping-cart/static/js/runtime-main.84c7d18a.js",
+    "runtime-main.js.map": "/shopping-cart/static/js/runtime-main.84c7d18a.js.map",
+    "static/js/2.b4b352e8.chunk.js": "/shopping-cart/static/js/2.b4b352e8.chunk.js",
+    "static/js/2.b4b352e8.chunk.js.map": "/shopping-cart/static/js/2.b4b352e8.chunk.js.map",
+    "index.html": "/shopping-cart/index.html",
+    "static/css/main.f5cd7c9d.chunk.css.map": "/shopping-cart/static/css/main.f5cd7c9d.chunk.css.map",
+    "static/js/2.b4b352e8.chunk.js.LICENSE.txt": "/shopping-cart/static/js/2.b4b352e8.chunk.js.LICENSE.txt",
+    "static/media/buckethat1.76f266e5.jpg": "/shopping-cart/static/media/buckethat1.76f266e5.jpg",
+    "static/media/buckethat2.9581595e.jpg": "/shopping-cart/static/media/buckethat2.9581595e.jpg",
+    "static/media/clothes.837d56d4.jpg": "/shopping-cart/static/media/clothes.837d56d4.jpg",
+    "static/media/facebook.8ab44a82.svg": "/shopping-cart/static/media/facebook.8ab44a82.svg",
+    "static/media/facemask1.6dd32c06.jpg": "/shopping-cart/static/media/facemask1.6dd32c06.jpg",
+    "static/media/insta.d034a7f8.svg": "/shopping-cart/static/media/insta.d034a7f8.svg",
+    "static/media/linkedin.cfe4cd5b.svg": "/shopping-cart/static/media/linkedin.cfe4cd5b.svg",
+    "static/media/recycle.3def1b12.jpg": "/shopping-cart/static/media/recycle.3def1b12.jpg",
+    "static/media/search.9a296b2a.svg": "/shopping-cart/static/media/search.9a296b2a.svg",
+    "static/media/shopping-cart.f0432bbd.svg": "/shopping-cart/static/media/shopping-cart.f0432bbd.svg",
+    "static/media/tshirt1.7b4b100c.jpg": "/shopping-cart/static/media/tshirt1.7b4b100c.jpg",
+    "static/media/twitter.6c3a6b9a.svg": "/shopping-cart/static/media/twitter.6c3a6b9a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.84c7d18a.js",
+    "static/js/2.b4b352e8.chunk.js",
+    "static/css/main.f5cd7c9d.chunk.css",
+    "static/js/main.ea904717.chunk.js"
+  ]
+}
