@@ -9,7 +9,7 @@ const Home = () => (
       <div className="home-desc">
         <h3>
           "Reducing Waste -
-              By Bringing Life Back To Disused Fabric"
+              By Bringing Life Back To Pre-Loved Textiles"
         </h3>
         <NavLink className="shop-now" to="/products" exact>Shop Now</NavLink>
         <img src={recycle} alt="recycle"></img>

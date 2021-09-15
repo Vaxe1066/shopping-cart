@@ -4,7 +4,7 @@ import Products from './pages/Products.js';
 import Contact from './pages/Contact.js';
 import Navbar from './components/Navbar.js';
 import CartDisplay from './components/CartDisplay';
-import {BrowserRouter, Switch, Route } from "react-router-dom";
+import {BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import React, {useState, useEffect} from 'react';
 import uniqid from "uniqid";
 import { useHistory } from "react-router-dom";
@@ -115,6 +115,7 @@ const App = () =>{
   useEffect(() => {
     totalPrice();
     countItems();
+    checkForZeroCart();
     let addCartInput = document.querySelectorAll(".add-cart-btn");
     addCartInput.forEach((input) =>{
       input.disabled = false;
@@ -189,9 +190,16 @@ const App = () =>{
         if(obj.count>0){
           obj.count = obj.count -1;
           let copyCartrray = [...cart];
-          copyCartrray[i] = obj
-          setCart([...copyCartrray]);
-          break;
+          if(obj.count>0){
+            copyCartrray[i] = obj
+            setCart([...copyCartrray]);
+            break;
+          }
+          else if(obj.count===0){
+            copyCartrray = copyCartrray.filter((item) => item.count!==0);
+            setCart([...copyCartrray]);
+            break;
+          }
         }
         else{
          break; 
@@ -200,6 +208,11 @@ const App = () =>{
 
       }
     }
+}
+
+const checkForZeroCart = () => {
+  let nonZeroItems = cart.filter((item) => item.count!==0);
+  console.log(nonZeroItems);
 }
 
 const addItem = (e) => {
@@ -299,7 +312,7 @@ const filteredHeading = (event) => {
       <div className="container">
         <div className={cartActive ? "App-active": "App"} >
           <Switch>
-            <Route exact path="/">
+            <Route  exact path="/shopping-cart">
               <Home />
             </Route>
             <Route exact path="/products">
